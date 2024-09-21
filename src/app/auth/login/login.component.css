@@ -1,0 +1,30 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid gray;
+  padding-block: 10px;
+  margin-top: 30px;
+  font-size: 20px;
+}
+
+button {
+  background: rgba(219, 68, 68, 1);
+  color: #fff;
+  padding: 16px 48px 16px 48px;
+  border-radius: 4px;
+}
+
+button:hover{
+  background: rgb(219, 96, 96);
+  color: #fff;
+
+}
