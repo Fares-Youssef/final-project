@@ -1,0 +1,58 @@
+.related {
+  width: 20px;
+  height: 40px;
+  background-color: #DB4444;
+}
+
+.carousel-item img {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel-control-next, .carousel-control-prev{
+  display: none;
+}
+
+.carousel-indicators [data-bs-target]{
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+.carousel-indicators .active{
+  background-color: #DB4444;
+}
+
+
+.category {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.sub-categories {
+  padding-left: 20px; /* Indent subcategories */
+}
+
+.sub-categories ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+.arrow {
+  transition: transform 0.3s;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+.category-section a {
+  color: #000;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.category-section a:hover{
+  color: #DB4444;
+}

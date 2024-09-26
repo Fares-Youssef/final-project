@@ -1,1 +1,107 @@
-<p class="vh-100">index works!</p>
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-lg-2 border-end py-4">
+      <div class="category-section">
+        <div class="category" *ngFor="let category of categories" (click)="toggleSubCategories(category)">
+          <div class="d-flex justify-content-between">
+            <span><a href="">{{ category.name }}</a></span>
+            <span class="arrow" *ngIf="category.subCategories.length > 0" [ngClass]="{'rotate': category.isOpen}">➔</span>
+          </div>
+          <div class="sub-categories" *ngIf="category.isOpen">
+            <ul>
+              <li *ngFor="let subCategory of category.subCategories">
+                <a href="">{{ subCategory.name }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-10 ps-5 py-4">
+      <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="images/home-img.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>First slide label</h5>
+              <p>Some representative placeholder content for the first slide.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="images/home-img.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Second slide label</h5>
+              <p>Some representative placeholder content for the second slide.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="images/home-img.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Third slide label</h5>
+              <p>Some representative placeholder content for the third slide.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class=" container  mt-5 mb-5 d-flex ">
+    <div class="related rounded"></div>
+    <h3 class="text-danger ms-4">Categories</h3>
+  </div>
+
+
+  <div class="container mb-5 d-flex justify-content-between align-items-center">
+    <h2 class=" ">Browse By Category</h2>
+  </div>
+  <div class="row mb-5">
+    <div class="col-lg-2 mb-3" *ngFor="let category of bottomCategories">
+      <div class="card rounded-0 h-100">
+        <div class="img" style="height: 200px;">
+          <img src="{{ category.image }}" class="card-img-top rounded-0" style="width: 100%;height:100%;object-fit: cover;" alt="...">
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{ category.category_data.category_name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="d-flex justify-content-between mt-5">
+    <div class="text-center">
+      <img src="images/Services.png" alt="" class="p-4">
+      <h4>FREE AND FAST DELIVERY</h4>
+      <p>Free delivery for all orders over $140</p>
+    </div>
+    <div class="text-center">
+      <img src="images/Services(1).png" alt="" class="p-4">
+      <h4>24/7 CUSTOMER SERVICE</h4>
+      <p>Friendly 24/7 customer support</p>
+    </div>
+    <div class="text-center">
+      <img src="images/Services(2).png" alt="" class="p-4">
+      <h4>MONEY BACK GUARANTEE</h4>
+      <p>We reurn money within 30 days</p>
+    </div>
+  </div>
+</div>

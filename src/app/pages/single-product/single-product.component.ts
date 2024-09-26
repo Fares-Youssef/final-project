@@ -17,7 +17,6 @@ export class SingleProductComponent {
   related:any;
 
   constructor(private products: ProductService, private activated: ActivatedRoute) {
-    
   }
 
   ngOnInit() {
