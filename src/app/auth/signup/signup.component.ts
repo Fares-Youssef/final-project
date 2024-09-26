@@ -3,6 +3,7 @@ import { Register } from '../../Interfaces/register';
 import { AuthService } from '../../Services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import {GlobalService} from "../../Services/global.service";
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class SignupComponent {
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private global : GlobalService,private auth: AuthService, private router: Router) { }
 
   model: Register = {
     first_name: '',
@@ -29,6 +30,8 @@ export class SignupComponent {
         (res) => {
           localStorage.setItem('user_token', res.data.token);
           localStorage.setItem('user_name', res.data.first_name);
+          this.global.userName = res.data.first_name;
+          this.global.is_login = true;
           Swal.fire({
             title: 'Success!',
             text: 'You have successfully registered.',

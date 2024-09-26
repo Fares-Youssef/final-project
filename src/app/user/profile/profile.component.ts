@@ -39,6 +39,7 @@ export class ProfileComponent {
     if (registerForm.valid) {
       this.auth.updateProfile(this.model ,this.userId).subscribe(
         (res) => {
+          console.log(res);
           localStorage.setItem('user_name', res.data.customer_first_name);
           Swal.fire({
             title: 'Success!',

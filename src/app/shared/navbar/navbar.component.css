@@ -18,3 +18,10 @@ a.top-nav-text{
 .fa-classic, .fa-regular, .fa-solid, .far, .fas {
   font-family: "Font Awesome 6 Free";
 }
+
+a.active i {
+  background-color: rgba(219, 68, 68, 1);
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+}

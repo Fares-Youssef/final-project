@@ -13,6 +13,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ProfileComponent } from './user/profile/profile.component';
 import { SidebarComponent } from './user/sidebar/sidebar.component';
 import { AuthInterceptor  } from './interceptor/auth.interceptor';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { SingleProductComponent } from './pages/single-product/single-product.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { AuthInterceptor  } from './interceptor/auth.interceptor';
     LoginComponent,
     ProfileComponent,
     SidebarComponent,
+    NotFoundComponent,
+    SingleProductComponent,
   ],
   imports: [
     BrowserModule,
