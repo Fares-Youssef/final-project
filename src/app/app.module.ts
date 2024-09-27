@@ -15,6 +15,7 @@ import { SidebarComponent } from './user/sidebar/sidebar.component';
 import { AuthInterceptor  } from './interceptor/auth.interceptor';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SingleProductComponent } from './pages/single-product/single-product.component';
+import { ProductsComponent } from './pages/products/products.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SingleProductComponent } from './pages/single-product/single-product.co
     SidebarComponent,
     NotFoundComponent,
     SingleProductComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,

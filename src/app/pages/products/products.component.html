@@ -1,0 +1,36 @@
+<div class=" container  mt-5 mb-5 d-flex ">
+  <div class="related rounded"></div>
+  <h3 class="text-danger ms-4">Products</h3>
+</div>
+<div class="row">
+  <div class="col-lg-3 mb-3" *ngFor="let item of products">
+    <div class="card h-100">
+      <div class="add-card">
+          <div class="img">
+            <img src="{{ item.image }}" class="card-img-top position-relative border-bottom bg-body-secondary " alt="...">
+          </div>
+          <div>
+              <i class="fa-regular fa-heart position-absolute top-0 end-0 mt-2 me-2 bg-white p-2 rounded-circle "></i>
+              <i class="fa-regular fa-eye position-absolute top-0 end-0 mt-5 me-2 bg-white p-2 rounded-circle"></i>
+          </div>
+      </div>
+      <div class="card-body">
+          <a routerLink="/product/single/{{ item.id }}">
+            <p class="card-title">{{ item.name }}</p>
+          </a>
+          <div>
+              <span class="text-danger me-2">${{ item.price_after }}</span>
+              <span class="text-light-emphasis text-decoration-line-through">${{ item.price }}</span>
+          </div>
+          <div class="stars">
+              <i class="fa-solid fa-star text-warning "></i>
+              <i class="fa-solid fa-star text-warning"></i>
+              <i class="fa-solid fa-star text-warning"></i>
+              <i class="fa-solid fa-star text-warning"></i>
+              <i class="fa-solid fa-star text-warning"></i>
+              <span class="text-light-emphasis ms-1">(88)</span>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>

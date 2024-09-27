@@ -1,16 +1,15 @@
 <section class="product-details spad">
-  <div class="container">
     <div class="row">
       <div class="col-lg-6">
-        <div class="product__details__pic">
+        <div class="product__details__pic h-100">
           <div class="product__details__pic__left product__thumb">
-            <a class="pt" [class.active]="activeImageIndex === i" (click)="changeImage(i)" *ngFor="let image of product?.gallery; let i = index">
+            <a class="pt" [class.active]="activeImageIndex === i" (click)="changeImage(i,image.name)" *ngFor="let image of product?.gallery; let i = index">
               <img src="{{ image.name }}" alt="">
             </a>
           </div>
-          <div class="product__details__slider__content">
-            <div class="product__details__pic__slider owl-carousel">
-              <img class="product__big__img" src="{{ image.name }}" alt="" *ngFor="let image of product?.gallery">
+          <div class="product__details__slider__content h-100">
+            <div class="img h-100">
+              <img class="" src="{{ main_image }}" alt="" >
             </div>
           </div>
         </div>
@@ -33,8 +32,8 @@
             <div class="color-selection d-flex" style="gap: 20px;">
               <h5>Colours :</h5>
               <div class="d-flex" style="gap: 10px;">
-                <div *ngFor="let color of colors">
-                  <input type="radio" name="color" [id]="'color-' + color.value">
+                <div *ngFor="let color of colors let i = index">
+                  <input type="radio" name="color" [id]="'color-' + color.value" [checked]="i == 0">
                   <label [for]="'color-' + color.value" [ngStyle]="{'background-color': color.value}" class="color-input"></label>
                 </div>
               </div>
@@ -81,19 +80,18 @@
         </div>
       </div>
     </div>
-  </div>
 </section>
 
-<div class=" container  mt-5 mb-5 d-flex ">
+<div class="   mt-5 mb-5 d-flex ">
   <div class="related rounded"></div>
   <h3 class="text-danger ms-4">Related Item</h3>
 </div>
 
 
-<div class="container">
+<div class="">
   <div class="row">
-    <div class="col-lg-3" *ngFor="let item of related">
-      <div class="card">
+    <div class="col-lg-3 mb-3" *ngFor="let item of related">
+      <div class="card h-100">
         <div class="add-card">
             <div class="img">
               <img src="{{ item.image }}" class="card-img-top position-relative border-bottom bg-body-secondary " alt="...">
@@ -104,12 +102,12 @@
             </div>
         </div>
         <div class="card-body">
-            <a routerLink="/product/{{ item.id }}">
-              <p class="card-title fs-6 fw-bold">{{ item.name }}</p>
+            <a routerLink="/product/single/{{ item.id }}">
+              <p class="card-title">{{ item.name }}</p>
             </a>
             <div>
-                <span class="text-danger ">{{ item.price }}</span>
-                <span class="text-light-emphasis text-decoration-line-through">{{ item.price_after }}</span>
+                <span class="text-danger me-2">${{ item.price_after }}</span>
+                <span class="text-light-emphasis text-decoration-line-through">${{ item.price }}</span>
             </div>
             <div class="stars">
                 <i class="fa-solid fa-star text-warning "></i>

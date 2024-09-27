@@ -32,8 +32,6 @@ export class IndexComponent {
     })
     this.home.category().subscribe(res=>{
       this.bottomCategories = res.data;
-      console.log(res.data);
-
     })
   }
 }

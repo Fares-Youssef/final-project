@@ -1,16 +1,16 @@
-<div class="container">
+<div class="">
   <div class="row justify-content-between">
     <div class="col-lg-2 border-end py-4">
       <div class="category-section">
         <div class="category" *ngFor="let category of categories" (click)="toggleSubCategories(category)">
           <div class="d-flex justify-content-between">
-            <span><a href="">{{ category.name }}</a></span>
-            <span class="arrow" *ngIf="category.subCategories.length > 0" [ngClass]="{'rotate': category.isOpen}">➔</span>
+            <span><a routerLink="/product/{{ category.id }}">{{ category.name }}</a></span>
+            <span class="arrow" *ngIf="category.subCategories.length > 0" [ngClass]="{'rotate': category.isOpen}">></span>
           </div>
           <div class="sub-categories" *ngIf="category.isOpen">
             <ul>
               <li *ngFor="let subCategory of category.subCategories">
-                <a href="">{{ subCategory.name }}</a>
+                <a routerLink="/product/{{ subCategory.id }}">{{ subCategory.name }}</a>
               </li>
             </ul>
           </div>
@@ -63,13 +63,13 @@
       </div>
     </div>
   </div>
-  <div class=" container  mt-5 mb-5 d-flex ">
+  <div class="   mt-5 mb-5 d-flex ">
     <div class="related rounded"></div>
     <h3 class="text-danger ms-4">Categories</h3>
   </div>
 
 
-  <div class="container mb-5 d-flex justify-content-between align-items-center">
+  <div class=" mb-5 d-flex justify-content-between align-items-center">
     <h2 class=" ">Browse By Category</h2>
   </div>
   <div class="row mb-5">
@@ -79,7 +79,7 @@
           <img src="{{ category.image }}" class="card-img-top rounded-0" style="width: 100%;height:100%;object-fit: cover;" alt="...">
         </div>
         <div class="card-body">
-          <p class="card-text">{{ category.category_data.category_name }}</p>
+          <span><a routerLink="/product/{{ category.id }}">{{ category.category_data.category_name }}</a></span>
         </div>
       </div>
     </div>
@@ -87,7 +87,7 @@
 
 
 
-  <div class="d-flex justify-content-between mt-5">
+  <div class="d-flex justify-content-between my-5">
     <div class="text-center">
       <img src="images/Services.png" alt="" class="p-4">
       <h4>FREE AND FAST DELIVERY</h4>

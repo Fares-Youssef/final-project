@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -15,42 +15,40 @@ export class SingleProductComponent {
   activeImageIndex: number = 0;
   colors:any = [];
   related:any;
+  main_image:any;
 
-  constructor(private products: ProductService, private activated: ActivatedRoute) {
+  constructor(private products: ProductService, private activated: ActivatedRoute,private router : Router) {
   }
 
   ngOnInit() {
     this.activated.paramMap.subscribe(param => {
       this.id = param.get('id');
       this.products.singleProduct(this.id).subscribe(res => {
-        this.product = res.data[0];
-        let object = {
-          name: this.product.attributes[0].variations[0].name,
-          value: "#" + this.product.attributes[0].variations[0].hex_color.slice(4)
-        }
-        this.colors.push(object)
+        if (res.data[0]) {
+          this.product = res.data[0];
+        this.colors = [];
+        this.product.attributes[0].variations.forEach((element:any) => {
+          let object = {
+            name: element.name,
+            value: "#" + element.hex_color.slice(4)
+          }
+          this.colors.push(object)
+        });
         this.related = this.product.similar_products
-        this.initializeCarousel();
+        this.main_image = this.product?.gallery[0].name
+        }else{
+          this.router.navigateByUrl('**')
+        }
       });
     });
   }
 
-  initializeCarousel() {
+  changeImage(index: number,src:any) {
+    this.main_image = 'images/download.png'
     setTimeout(() => {
-      $('.product__details__pic__slider').owlCarousel({
-        items: 1,
-        nav: false,
-        dots: false,
-        autoplay: false,
-        mouseDrag: false,
-        loop: true,
-      });
-    }, 100);
-  }
-
-  changeImage(index: number) {
+      this.main_image = src
+    } ,100)
     this.activeImageIndex = index;
-    $('.product__details__pic__slider').trigger('to.owl.carousel', [index]);
   }
 
   quantity: number = 2;

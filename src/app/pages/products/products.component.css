@@ -1,0 +1,22 @@
+.card-body a {
+  text-decoration: none;
+}
+
+.card-body a p{
+  color: #000;
+  transition: .3s;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.card-body a:hover p{
+  color: #DB4444;
+}
+
+.related{
+  width: 20px;
+  height: 40px;
+  background-color: #DB4444;
+
+
+}

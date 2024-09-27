@@ -10,16 +10,18 @@
   object-fit: cover;
 }
 
-.carousel-control-next, .carousel-control-prev{
+.carousel-control-next,
+.carousel-control-prev {
   display: none;
 }
 
-.carousel-indicators [data-bs-target]{
+.carousel-indicators [data-bs-target] {
   width: 15px;
   height: 15px;
   border-radius: 50%;
 }
-.carousel-indicators .active{
+
+.carousel-indicators .active {
   background-color: #DB4444;
 }
 
@@ -30,13 +32,13 @@
 }
 
 .sub-categories {
-  padding-left: 20px; /* Indent subcategories */
+  padding-left: 20px;
 }
 
 .sub-categories ul {
-  list-style-type: none; /* Remove bullets */
-  padding: 0; /* Remove default padding */
-  margin: 0; /* Remove default margin */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .arrow {
@@ -53,6 +55,16 @@
   transition: .3s;
 }
 
-.category-section a:hover{
+.category-section a:hover {
+  color: #DB4444;
+}
+
+.card-body a {
+  color: #000;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.card-body a:hover {
   color: #DB4444;
 }
