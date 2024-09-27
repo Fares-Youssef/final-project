@@ -15,7 +15,7 @@ export class SingleProductComponent {
   activeImageIndex: number = 0;
   colors:any = [];
   related:any;
-  main_image:any;
+  main_image:any = 'images/download.png';
 
   constructor(private products: ProductService, private activated: ActivatedRoute,private router : Router) {
   }

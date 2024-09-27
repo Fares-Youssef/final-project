@@ -13,22 +13,10 @@ export class IndexComponent {
 
   constructor(private home :HomeService){}
 
-  toggleSubCategories(category: any) {
-    category.isOpen = !category.isOpen;
-  }
-
   ngOnInit()
   {
     this.home.topCategory().subscribe(res=>{
-      res.data.forEach((element:any) => {
-        let object = {
-          id:element.id,
-          name: element.name,
-          subCategories : element.subcategories,
-          isOpen: false
-        }
-        this.categories.push(object)
-      });
+      this.categories = res.data
     })
     this.home.category().subscribe(res=>{
       this.bottomCategories = res.data;

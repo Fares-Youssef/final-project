@@ -2,14 +2,15 @@
   <div class="row justify-content-between">
     <div class="col-lg-2 border-end py-4">
       <div class="category-section">
-        <div class="category" *ngFor="let category of categories" (click)="toggleSubCategories(category)">
-          <div class="d-flex justify-content-between">
+        <div class="category" *ngFor="let category of categories; let i = index">
+          <input type="checkbox" id="toggle{{ i }}" class="toggle-checkbox">
+          <label for="toggle{{ i }}" class="d-flex justify-content-between mb-3">
             <span><a routerLink="/product/{{ category.id }}">{{ category.name }}</a></span>
-            <span class="arrow" *ngIf="category.subCategories.length > 0" [ngClass]="{'rotate': category.isOpen}">></span>
-          </div>
-          <div class="sub-categories" *ngIf="category.isOpen">
+            <span class="arrow">></span>
+          </label>
+          <div class="sub-categories">
             <ul>
-              <li *ngFor="let subCategory of category.subCategories">
+              <li *ngFor="let subCategory of category.subcategories" class="mb-2">
                 <a routerLink="/product/{{ subCategory.id }}">{{ subCategory.name }}</a>
               </li>
             </ul>

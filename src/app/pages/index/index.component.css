@@ -25,24 +25,36 @@
   background-color: #DB4444;
 }
 
-
-.category {
-  margin-bottom: 10px;
-  cursor: pointer;
+.toggle-checkbox {
+  display: none;
 }
 
 .sub-categories {
-  padding-left: 20px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
 }
 
 .sub-categories ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+  list-style: none;
 }
 
-.arrow {
-  transition: transform 0.3s;
+.toggle-checkbox + label{
+  cursor: pointer;
+}
+
+.toggle-checkbox:checked + label + .sub-categories {
+  max-height: 500px;
+  opacity: 1;
+  visibility: visible;
+  transition: max-height 0.3s ease-in, opacity 0.3s ease-in;
+}
+
+.toggle-checkbox:checked + label .arrow {
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
 }
 
 .rotate {
