@@ -17,6 +17,13 @@
   width: 20px;
   height: 40px;
   background-color: #DB4444;
+}
 
+.add-to-cart{
+  transition: all .5s;
+  bottom: -100px;
+}
 
+.card:hover .add-to-cart{
+  bottom: 0;
 }

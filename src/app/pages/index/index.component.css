@@ -56,6 +56,10 @@
   transform: rotate(90deg);
   transition: transform 0.3s ease;
 }
+.toggle-checkbox + label .arrow {
+  transform: rotate(0);
+  transition: transform 0.3s ease;
+}
 
 .rotate {
   transform: rotate(90deg);

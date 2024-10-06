@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from '../../Services/cart.service';
+import { GlobalService } from '../../Services/global.service';
+import Swal from 'sweetalert2';
 declare var $: any;
 
 @Component({
@@ -16,8 +19,15 @@ export class SingleProductComponent {
   colors:any = [];
   related:any;
   main_image:any = 'images/download.png';
+  quantity: number = 1;
+  addCart = {
+    product_id: 0,
+    qty: 0,
+    is_collage: 0,
+    is_offer: 0
+  }
 
-  constructor(private products: ProductService, private activated: ActivatedRoute,private router : Router) {
+  constructor(private products: ProductService, private activated: ActivatedRoute,private router : Router, private cart: CartService, private global: GlobalService) {
   }
 
   ngOnInit() {
@@ -43,6 +53,31 @@ export class SingleProductComponent {
     });
   }
 
+  addToCart() {
+    if (this.global.is_login) {
+      this.addCart.product_id = this.id
+      this.addCart.qty = this.quantity
+      this.cart.addToCart(this.addCart).subscribe(res => {
+        Swal.fire({
+          title: 'Success!',
+          text: res.message,
+          icon: 'success',
+          timer: 1000,
+          showConfirmButton: false
+        })
+      })
+    } else {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Please Login First',
+        icon: 'error',
+        timer: 1000,
+        showConfirmButton: false
+      });
+      this.router.navigateByUrl('/login');
+    }
+  }
+
   changeImage(index: number,src:any) {
     this.main_image = 'images/download.png'
     setTimeout(() => {
@@ -51,7 +86,6 @@ export class SingleProductComponent {
     this.activeImageIndex = index;
   }
 
-  quantity: number = 2;
   selectedSize: string = 'M';
 
   sizes: string[] = ['XS', 'S', 'M', 'L', 'XL'];

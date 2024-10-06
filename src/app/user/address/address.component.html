@@ -1,0 +1,36 @@
+<div class="address">
+  <div class="row mt-5">
+    <div class="sidebar col-md-3">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-lg-9">
+      <div class="row">
+        <div class="col-lg-4 mb-3">
+          <a class="text-decoration-none" routerLink="/address/create">
+            <div class="card h-100 align-items-center justify-content-center">
+              <i class="fa-solid fa-plus fs-1"></i>
+          </div>
+          </a>
+        </div>
+        <div class="col-lg-4 mb-3" *ngFor="let address of addresses">
+          <div class="card justify-content-between h-100">
+              <div class="top px-3 pt-2 border-bottom" *ngIf="address.default_address">
+                  <h5 class="default">Default</h5>
+              </div>
+              <div class="body p-3">
+                <p class="mb-2"><strong>{{ address.street_address }}</strong></p>
+                <p class="mb-2">{{ address.suburb }}</p>
+                <p class="mb-2">{{ address.building_number + ' / ' + address.floor_number + ' / ' + address.flat_number }}</p>
+                <p class="mb-2">{{ address.country_id.country_name + ' - ' + address.state_id.name + ' - ' + address.cityInfo.name_en}}</p>
+                <p class="mb-2">Phone number: {{ address.phone }}</p>
+              </div>
+              <div class="address-actions px-3 pb-2">
+                <a routerLink="/address/update/{{ address.id }}" class="edit me-2">Edit</a> | <a (click)="delete(address.id)" class="remove mx-2"> Remove</a> <span *ngIf="!address.default_address">| <a (click)="default(address.id)" class="default default2 me-2">Set As Default</a></span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

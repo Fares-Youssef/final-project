@@ -1,0 +1,89 @@
+<div class="address">
+  <div class="row mt-5">
+    <div class="sidebar col-md-4">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-lg-8">
+      <div [formGroup]="addressForm" class="row">
+        <div class="col-lg-4 mb-3">
+          <label class="mb-2">Country</label>
+          <ng-select formControlName="country_id" [items]="countries" bindLabel="name" bindValue="id" (change)="handleState()"
+            placeholder="Choose Country Name"></ng-select>
+          <div *ngIf="is_submit == true && addressForm.get('country_id')?.invalid" class="text-danger">
+            Country is required.
+          </div>
+        </div>
+        <div class="col-lg-4 mb-3">
+          <label class="mb-2">State</label>
+          <ng-select formControlName="state_id" [items]="states" bindLabel="name" bindValue="id" (change)="handleCities()"
+            placeholder="Choose State Name"></ng-select>
+          <div *ngIf="is_submit == true && addressForm.get('state_id')?.invalid" class="text-danger">
+            State is required.
+          </div>
+        </div>
+        <div class="col-lg-4 mb-3">
+          <label class="mb-2">City</label>
+          <ng-select formControlName="city" [items]="cities" bindLabel="name_en" bindValue="id"
+            placeholder="Choose City Name"></ng-select>
+          <div *ngIf="is_submit == true && addressForm.get('city')?.invalid" class="text-danger">
+            City is required.
+          </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label class="mb-2">Suburb</label>
+          <input formControlName="suburb" type="text" class="form-control" placeholder="Suburb">
+          <div *ngIf="is_submit == true && addressForm.get('suburb')?.invalid" class="text-danger">
+            <div *ngIf="addressForm.get('suburb')?.invalid">suburb is required.</div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label class="mb-2">Phone</label>
+          <input formControlName="phone" type="tel" class="form-control" placeholder="Phone">
+          <div *ngIf="is_submit == true && addressForm.get('phone')?.invalid" class="text-danger">
+            <div *ngIf="addressForm.get('phone')?.invalid">Phone is required.</div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label class="mb-2">Street</label>
+          <input formControlName="street_address" type="text" class="form-control" placeholder="Street">
+          <div *ngIf="is_submit == true && addressForm.get('street_address')?.invalid" class="text-danger">
+            Street is required.
+          </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label class="mb-2">Building Number</label>
+          <input formControlName="building_number" type="text" class="form-control" placeholder="Building Number">
+          <div *ngIf="is_submit == true && addressForm.get('building_number')?.invalid" class="text-danger">
+            Building Number is required.
+          </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label class="mb-2">Floor Number</label>
+          <input formControlName="floor_number" type="text" class="form-control" placeholder="Floor Number">
+          <div *ngIf="is_submit == true && addressForm.get('floor_number')?.invalid" class="text-danger">
+            Floor Number is required.
+          </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label class="mb-2">Flat Number</label>
+          <input formControlName="flat_number" type="text" class="form-control" placeholder="Flat Number">
+          <div *ngIf="is_submit == true && addressForm.get('flat_number')?.invalid" class="text-danger">
+            Flat Number is required.
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" value="1" formControlName="is_default">
+            <label class="form-check-label" for="flexSwitchCheckChecked"> Default Address</label>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="text-end">
+            <button class="btn" (click)="onSubmit()">{{ this.id ? 'Save Changes' : 'Add Address' }}</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>

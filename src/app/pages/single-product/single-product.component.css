@@ -161,3 +161,13 @@ input[name='color']:checked + label {
 .card-body a:hover p{
   color: #DB4444;
 }
+
+
+.add-to-cart{
+  transition: all .5s;
+  bottom: -100px;
+}
+
+.card:hover .add-to-cart{
+  bottom: 0;
+}

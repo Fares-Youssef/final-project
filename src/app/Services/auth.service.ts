@@ -27,6 +27,10 @@ export class AuthService {
   updateProfile(obj:any ,id:any):Observable<any> {
     return this.Http.post(`${this.baseUrl}client/profile/${id}`,obj);
   }
+
+  updateUserImage(obj:any):Observable<any> {
+    return this.Http.post(`${this.baseUrl}client/update-profile-image`,obj);
+  }
   changePassword(obj:any):Observable<any> {
     return this.Http.post(`${this.baseUrl}client/change_password`,obj);
   }

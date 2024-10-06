@@ -1,0 +1,27 @@
+.card{
+  min-height: 230px;
+}
+
+.address{
+  min-height: 80vh;
+}
+
+.default{
+  color: rgba(219, 68, 68, 1);
+}
+
+.address-actions a {
+  text-decoration: none;
+  margin-inline-end: 10px;
+}
+.address-actions a.edit {
+  color: #00bfff;
+}
+.address-actions a.remove {
+  color: red;
+  cursor: pointer;
+}
+
+.default2{
+  cursor: pointer;
+}

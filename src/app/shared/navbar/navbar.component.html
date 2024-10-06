@@ -33,8 +33,11 @@
           <input class="form-control me-4 " type="text" placeholder="What are you looking for?" aria-label="Search">
           <i class="fa-solid fa-magnifying-glass position-absolute end-0 top-50 translate-middle"></i>
         </form>
-        <a class="nav-link ms-4" routerLink="profile" routerLinkActive="active"  *ngIf="global.is_login">
-          <i class="fa-regular fa-user"></i>
+        <a class="nav-link ms-4" routerLink="cart" routerLinkActive="active"  *ngIf="global.is_login">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+        <a class="nav-link ms-1" routerLink="profile" routerLinkActive="active"  *ngIf="global.is_login">
+          <i class="fa-solid fa-user"></i>
         </a>
       </div>
     </div>
