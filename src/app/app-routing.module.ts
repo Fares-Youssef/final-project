@@ -11,18 +11,19 @@ import { CartComponent } from './pages/cart/cart.component';
 import { AddressComponent } from './user/address/address.component';
 import { CreateAddressComponent } from './user/create-address/create-address.component';
 import { authGuard } from './guards/auth.guard';
+import { guestGuard } from './guards/guest.guard';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent , canActivate:[guestGuard]},
+  { path: 'login', component: LoginComponent , canActivate:[guestGuard]},
   { path: 'profile', component: ProfileComponent , canActivate:[authGuard]},
   {
     path: 'address', children: [
       { path: '', component: AddressComponent },
       { path: 'create', component: CreateAddressComponent },
       { path: 'update/:id', component: CreateAddressComponent },
-    ]
+    ], canActivate:[authGuard]
   },
   {
     path: 'product', children: [
@@ -34,7 +35,7 @@ const routes: Routes = [
     path: 'cart', children: [
       { path: '', component: CartComponent },
       { path: 'single/:id', component: SingleProductComponent },
-    ]
+    ], canActivate:[authGuard]
   },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' }

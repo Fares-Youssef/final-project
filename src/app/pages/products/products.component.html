@@ -1,19 +1,20 @@
-<div class=" container  mt-5 mb-5 d-flex ">
+<div class=" container  mt-5 mb-5 d-flex " *ngIf="products.length > 0">
   <div class="related rounded"></div>
   <h3 class="text-danger ms-4">Products</h3>
 </div>
-<div class="row" style="min-height: 80vh;">
+<div class=" container  mt-5 mb-5 d-flex " style="min-height: 50vh;" *ngIf="!products.length">
+  <div class="related rounded"></div>
+  <h1 class="text-danger ms-4">Sorry No Products In This Category</h1>
+</div>
+<div class="row">
   <div class="col-lg-3 mb-3" *ngFor="let item of products">
     <div class="card h-100">
       <div class="add-card position-relative">
         <div class="img">
           <img src="{{ item.image }}" class="card-img-top position-relative border-bottom bg-body-secondary " alt="...">
         </div>
-        <div>
-          <i class="fa-regular fa-heart position-absolute top-0 end-0 mt-2 me-2 bg-white p-2 rounded-circle "></i>
-          <i class="fa-regular fa-eye position-absolute top-0 end-0 mt-5 me-2 bg-white p-2 rounded-circle"></i>
-        </div>
-        <button class="border-0 bg-dark text-white text-center p-3 position-absolute w-100 add-to-cart" (click)="addToCart(item.id)">
+        <button class="border-0 bg-dark text-white text-center p-3 position-absolute w-100 add-to-cart"
+          (click)="addToCart(item.id)">
           Add To Cart
         </button>
       </div>
