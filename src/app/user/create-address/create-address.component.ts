@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddressService } from '../../Services/address.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GlobalService } from '../../Services/global.service';
 
 @Component({
   selector: 'app-create-address',
@@ -17,17 +18,23 @@ export class CreateAddressComponent {
   states: any;
   cities: any;
   id: any;
-  editAddress:any;
+  editAddress: any;
 
-  constructor(private address: AddressService, private router: Router, private activated: ActivatedRoute) { }
+  constructor(private address: AddressService, private router: Router, private activated: ActivatedRoute, private global: GlobalService) {
+    this.global.loaded = false;
+  }
 
   ngOnInit() {
     this.address.getCountry().subscribe(res => {
       this.countries = res.data;
+    }, (err) => {
+    }, () => {
+      this.global.loaded = true
     })
     this.activated.paramMap.subscribe(param => {
       this.id = param.get('id');
       if (this.id) {
+        this.global.loaded = false;
         this.address.address().subscribe(res => {
           this.editAddress = res.data.find((add: any) => add.id == this.id);
           this.addressForm.patchValue({
@@ -40,8 +47,8 @@ export class CreateAddressComponent {
             flat_number: this.editAddress.flat_number,
             is_default: (this.editAddress.default_address == 1) ? true : false
           });
-        },(err)=>{
-        },()=>{
+        }, (err) => {
+        }, () => {
           this.address.getGovernorates(this.addressForm.get('country_id')?.value).subscribe(res => {
             this.states = res.data;
             this.addressForm.patchValue({
@@ -53,6 +60,9 @@ export class CreateAddressComponent {
             this.addressForm.patchValue({
               city: this.editAddress.cityInfo.id
             });
+          }, (err) => {
+          }, () => {
+            this.global.loaded = true
           })
         });
       }
@@ -94,6 +104,7 @@ export class CreateAddressComponent {
   onSubmit() {
     this.is_submit = true
     if (this.addressForm.valid) {
+      this.global.loaded = false;
       if (this.id == null) {
         this.address.addAddress(this.addressForm.value).subscribe(res => {
           Swal.fire({
@@ -105,8 +116,8 @@ export class CreateAddressComponent {
           });
           this.router.navigateByUrl('/address')
         })
-      }else{
-        this.address.updateAddress(this.addressForm.value,this.id).subscribe(res => {
+      } else {
+        this.address.updateAddress(this.addressForm.value, this.id).subscribe(res => {
           Swal.fire({
             title: 'Success!',
             text: 'Update Address Successfuly.',

@@ -22,6 +22,7 @@ export class ProductsComponent {
   }
 
   constructor(private product: ProductService, private activated: ActivatedRoute, private router: Router, private cart: CartService, private global: GlobalService) {
+    this.global.loaded = false
   }
 
   ngOnInit() {
@@ -29,12 +30,15 @@ export class ProductsComponent {
       this.id = param.get('id');
       this.product.products(this.id).subscribe(res => {
         this.products = res.data
-      })
+      }, (err) => { }, () => {
+        this.global.loaded = true
+      });
     });
   }
 
   addToCart(id: number) {
     if (this.global.is_login) {
+      this.global.loaded = false
       this.addCart.product_id = id
       this.cart.addToCart(this.addCart).subscribe(res => {
         Swal.fire({
@@ -44,6 +48,8 @@ export class ProductsComponent {
           timer: 1000,
           showConfirmButton: false
         })
+      }, (err) => { }, () => {
+        this.global.loaded = true
       })
     } else {
       Swal.fire({

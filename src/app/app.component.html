@@ -3,3 +3,7 @@
   <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>
+
+<div class="load" *ngIf="!global.loaded">
+  <img src="/images/load.gif" style="max-width: 100px;" alt="">
+</div>

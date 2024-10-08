@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AddressService } from '../../Services/address.service';
 import Swal from 'sweetalert2';
+import { GlobalService } from '../../Services/global.service';
 
 @Component({
   selector: 'app-address',
@@ -14,15 +15,20 @@ export class AddressComponent {
     is_default: 0
   }
 
-  constructor(private address: AddressService) { }
+  constructor(private address: AddressService, private global: GlobalService) {
+  }
 
   ngOnInit() {
     this.getAddress()
   }
 
   getAddress() {
+    this.global.loaded = false;
     this.address.address().subscribe(res => {
       this.addresses = res.data;
+    }, (err) => {
+    }, () => {
+      this.global.loaded = true
     })
   }
 

@@ -6,3 +6,15 @@ img{
   max-width: 100%;
 }
 
+
+
+.load {
+  height: 100vh;
+  position: fixed;
+  inset: 0 0 0 0;
+  background-color: #ffffff;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

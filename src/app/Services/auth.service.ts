@@ -7,6 +7,8 @@ import {Observable} from "rxjs";
 })
 export class AuthService {
 
+  src = ''
+
   baseUrl = 'http://techs-experts.net/public/api/';
 
   constructor(private Http: HttpClient) {

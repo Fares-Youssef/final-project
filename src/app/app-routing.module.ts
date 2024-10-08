@@ -10,12 +10,13 @@ import { ProductsComponent } from './pages/products/products.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { AddressComponent } from './user/address/address.component';
 import { CreateAddressComponent } from './user/create-address/create-address.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent , canActivate:[authGuard]},
   {
     path: 'address', children: [
       { path: '', component: AddressComponent },

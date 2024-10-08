@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {GlobalService} from "../../Services/global.service";
-import {Router} from "@angular/router";
-import {AuthService} from "../../Services/auth.service";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { GlobalService } from "../../Services/global.service";
+import { Router } from "@angular/router";
+import { AuthService } from "../../Services/auth.service";
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent {
 
-  constructor(private global : GlobalService, private router : Router , private auth : AuthService) {
+  constructor(private global: GlobalService, private router: Router, private auth: AuthService) {
   }
 
   loginForm = new FormGroup({
@@ -31,10 +31,11 @@ export class LoginComponent {
   handleSubmit() {
     this.isSubmitted = true;
     if (this.loginForm.valid) {
+      this.global.loaded = false
       this.auth.login(this.loginForm.value).subscribe(res => {
-        if (res.status == 'Success'){
-          localStorage.setItem('user_token',res.data.token)
-          localStorage.setItem('user_name',res.data.first_name)
+        if (res.status == 'Success') {
+          localStorage.setItem('user_token', res.data.token)
+          localStorage.setItem('user_name', res.data.first_name)
           this.global.userName = res.data.first_name;
           this.global.is_login = true;
           Swal.fire({
@@ -54,6 +55,8 @@ export class LoginComponent {
           icon: 'error',
           confirmButtonText: 'OK'
         });
+      },() => {
+        this.global.loaded = true
       });
     }
   }

@@ -7,7 +7,7 @@ export class GlobalService {
 
   userName = localStorage.getItem('user_name') ?? '';
   is_login = localStorage.getItem('user_token') ? true : false;
-
+  loaded = true
 
 
   constructor() { }

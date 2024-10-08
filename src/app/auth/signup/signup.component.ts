@@ -12,7 +12,9 @@ import {GlobalService} from "../../Services/global.service";
 })
 export class SignupComponent {
 
-  constructor(private global : GlobalService,private auth: AuthService, private router: Router) { }
+  constructor(private global : GlobalService,private auth: AuthService, private router: Router) {
+
+  }
 
   model: Register = {
     first_name: '',
@@ -26,6 +28,7 @@ export class SignupComponent {
 
   handleSubmit(registerForm: any) {
     if (registerForm.valid) {
+      this.global.loaded = false
       this.auth.register(this.model).subscribe(
         (res) => {
           localStorage.setItem('user_token', res.data.token);
@@ -49,6 +52,8 @@ export class SignupComponent {
             icon: 'error',
             confirmButtonText: 'OK'
           });
+        },() => {
+          this.global.loaded = true
         }
       );
     }

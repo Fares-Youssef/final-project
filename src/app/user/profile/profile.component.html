@@ -3,6 +3,16 @@
     <app-sidebar></app-sidebar>
   </div>
   <div class="info col-md-7 ps-5 pe-5 pt-3 pb-3 ">
+    <h4 class="text-danger mb-3">Edit Your Image</h4>
+    <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <input type="file" (change)="onFileSelect($event)" formControlName="image"class="form-control"/>
+      </div>
+      <div class="text-end">
+        <button type="submit" class="btn" [disabled]="uploadForm.invalid">Upload</button>
+      </div>
+    </form>
+
     <h4 class="text-danger mb-3">Edit Your Profile</h4>
     <form #registerForm="ngForm" (ngSubmit)="handleSubmit(registerForm)">
       <div class="row ">

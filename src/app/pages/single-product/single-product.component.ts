@@ -28,6 +28,7 @@ export class SingleProductComponent {
   }
 
   constructor(private products: ProductService, private activated: ActivatedRoute,private router : Router, private cart: CartService, private global: GlobalService) {
+    this.global.loaded = false
   }
 
   ngOnInit() {
@@ -49,12 +50,15 @@ export class SingleProductComponent {
         }else{
           this.router.navigateByUrl('**')
         }
+      }, (err) => { }, () => {
+        this.global.loaded = true
       });
     });
   }
 
   addToCart() {
     if (this.global.is_login) {
+    this.global.loaded = false
       this.addCart.product_id = this.id
       this.addCart.qty = this.quantity
       this.cart.addToCart(this.addCart).subscribe(res => {
@@ -65,7 +69,9 @@ export class SingleProductComponent {
           timer: 1000,
           showConfirmButton: false
         })
-      })
+      }, (err) => { }, () => {
+        this.global.loaded = true
+      });
     } else {
       Swal.fire({
         title: 'Error!',

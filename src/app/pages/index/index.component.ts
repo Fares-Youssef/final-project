@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HomeService } from '../../Services/home.service';
+import { GlobalService } from '../../Services/global.service';
 
 @Component({
   selector: 'app-index',
@@ -8,18 +9,23 @@ import { HomeService } from '../../Services/home.service';
 })
 export class IndexComponent {
 
-  categories:any = [];
-  bottomCategories:any;
+  categories: any = [];
+  bottomCategories: any;
 
-  constructor(private home :HomeService){}
+  constructor(private home: HomeService, private global: GlobalService) {
+    this.global.loaded = false
+  }
 
-  ngOnInit()
-  {
-    this.home.topCategory().subscribe(res=>{
+
+  ngOnInit() {
+    this.home.topCategory().subscribe(res => {
       this.categories = res.data
     })
-    this.home.category().subscribe(res=>{
+    this.home.category().subscribe(res => {
       this.bottomCategories = res.data;
+    }, (err) => { }, () => {
+      this.global.loaded = true
     })
   }
+
 }
